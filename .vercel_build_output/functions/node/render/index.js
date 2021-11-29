@@ -4845,99 +4845,16 @@ var init_dist = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/_api-e66b1c82.js
-async function api(request, resource, data) {
-  if (!request.locals.userid) {
-    return { status: 401 };
-  }
-  const res = await fetch(`${base}/${resource}`, {
-    method: request.method,
-    headers: {
-      "content-type": "application/json"
-    },
-    body: data && JSON.stringify(data)
-  });
-  if (res.ok && request.method !== "GET" && request.headers.accept !== "application/json") {
-    return {
-      status: 303,
-      headers: {
-        location: "/todos"
-      }
-    };
-  }
-  return {
-    status: res.status,
-    body: await res.json()
-  };
-}
-var base;
-var init_api_e66b1c82 = __esm({
-  ".svelte-kit/output/server/chunks/_api-e66b1c82.js"() {
-    init_shims();
-    base = "https://api.svelte.dev";
-  }
-});
-
-// .svelte-kit/output/server/chunks/index.json-784727b1.js
-var index_json_784727b1_exports = {};
-__export(index_json_784727b1_exports, {
-  get: () => get,
-  post: () => post
-});
-var get, post;
-var init_index_json_784727b1 = __esm({
-  ".svelte-kit/output/server/chunks/index.json-784727b1.js"() {
-    init_shims();
-    init_api_e66b1c82();
-    get = async (request) => {
-      const response = await api(request, `todos/${request.locals.userid}`);
-      if (response.status === 404) {
-        return { body: [] };
-      }
-      return response;
-    };
-    post = async (request) => {
-      const response = await api(request, `todos/${request.locals.userid}`, {
-        text: request.body.get("text")
-      });
-      return response;
-    };
-  }
-});
-
-// .svelte-kit/output/server/chunks/_uid_.json-039b6f30.js
-var uid_json_039b6f30_exports = {};
-__export(uid_json_039b6f30_exports, {
-  del: () => del,
-  patch: () => patch
-});
-var patch, del;
-var init_uid_json_039b6f30 = __esm({
-  ".svelte-kit/output/server/chunks/_uid_.json-039b6f30.js"() {
-    init_shims();
-    init_api_e66b1c82();
-    patch = async (request) => {
-      return api(request, `todos/${request.locals.userid}/${request.params.uid}`, {
-        text: request.body.get("text"),
-        done: request.body.has("done") ? !!request.body.get("done") : void 0
-      });
-    };
-    del = async (request) => {
-      return api(request, `todos/${request.locals.userid}/${request.params.uid}`);
-    };
-  }
-});
-
-// .svelte-kit/output/server/chunks/__layout-9f20f2a7.js
-var layout_9f20f2a7_exports = {};
-__export(layout_9f20f2a7_exports, {
+// .svelte-kit/output/server/chunks/__layout-d4d07fea.js
+var layout_d4d07fea_exports = {};
+__export(layout_d4d07fea_exports, {
   default: () => _layout
 });
 var import_cookie, getStores, page, logo, css$1, Header, css, _layout;
-var init_layout_9f20f2a7 = __esm({
-  ".svelte-kit/output/server/chunks/__layout-9f20f2a7.js"() {
+var init_layout_d4d07fea = __esm({
+  ".svelte-kit/output/server/chunks/__layout-d4d07fea.js"() {
     init_shims();
-    init_app_8b464c42();
+    init_app_2f99d4d4();
     import_cookie = __toModule(require_cookie());
     init_dist();
     getStores = () => {
@@ -4978,8 +4895,7 @@ var init_layout_9f20f2a7 = __esm({
 
 	<nav class="${"svelte-t2wq17"}"><svg viewBox="${"0 0 2 3"}" aria-hidden="${"true"}" class="${"svelte-t2wq17"}"><path d="${"M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z"}" class="${"svelte-t2wq17"}"></path></svg>
 		<ul class="${"svelte-t2wq17"}"><li class="${["svelte-t2wq17", $page.path === "/" ? "active" : ""].join(" ").trim()}"><a sveltekit:prefetch href="${"/"}" class="${"svelte-t2wq17"}">Home</a></li>
-			<li class="${["svelte-t2wq17", $page.path === "/about" ? "active" : ""].join(" ").trim()}"><a sveltekit:prefetch href="${"/about"}" class="${"svelte-t2wq17"}">About</a></li>
-			<li class="${["svelte-t2wq17", $page.path === "/todos" ? "active" : ""].join(" ").trim()}"><a sveltekit:prefetch href="${"/todos"}" class="${"svelte-t2wq17"}">Todos</a></li></ul>
+			<li class="${["svelte-t2wq17", $page.path === "/about" ? "active" : ""].join(" ").trim()}"><a sveltekit:prefetch href="${"/about"}" class="${"svelte-t2wq17"}">About</a></li></ul>
 		<svg viewBox="${"0 0 2 3"}" aria-hidden="${"true"}" class="${"svelte-t2wq17"}"><path d="${"M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z"}" class="${"svelte-t2wq17"}"></path></svg></nav>
 
 	<div class="${"corner svelte-t2wq17"}"></div>
@@ -5001,9 +4917,9 @@ var init_layout_9f20f2a7 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/error-8876f0c1.js
-var error_8876f0c1_exports = {};
-__export(error_8876f0c1_exports, {
+// .svelte-kit/output/server/chunks/error-a1d3abc4.js
+var error_a1d3abc4_exports = {};
+__export(error_a1d3abc4_exports, {
   default: () => Error2,
   load: () => load
 });
@@ -5011,10 +4927,10 @@ function load({ error: error2, status }) {
   return { props: { error: error2, status } };
 }
 var import_cookie2, Error2;
-var init_error_8876f0c1 = __esm({
-  ".svelte-kit/output/server/chunks/error-8876f0c1.js"() {
+var init_error_a1d3abc4 = __esm({
+  ".svelte-kit/output/server/chunks/error-a1d3abc4.js"() {
     init_shims();
-    init_app_8b464c42();
+    init_app_2f99d4d4();
     import_cookie2 = __toModule(require_cookie());
     init_dist();
     Error2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -5036,9 +4952,9 @@ ${error2.stack ? `<pre>${escape2(error2.stack)}</pre>` : ``}`;
   }
 });
 
-// .svelte-kit/output/server/chunks/index-747446a9.js
-var index_747446a9_exports = {};
-__export(index_747446a9_exports, {
+// .svelte-kit/output/server/chunks/index-043ca214.js
+var index_043ca214_exports = {};
+__export(index_043ca214_exports, {
   default: () => Routes,
   prerender: () => prerender
 });
@@ -5427,7 +5343,7 @@ function WebGLAttributes(gl, capabilities) {
       updateRange.count = -1;
     }
   }
-  function get2(attribute) {
+  function get(attribute) {
     if (attribute.isInterleavedBufferAttribute)
       attribute = attribute.data;
     return buffers.get(attribute);
@@ -5465,7 +5381,7 @@ function WebGLAttributes(gl, capabilities) {
     }
   }
   return {
-    get: get2,
+    get,
     remove,
     update: update2
   };
@@ -6104,7 +6020,7 @@ function WebGLCubeMaps(renderer) {
     }
     return texture;
   }
-  function get2(texture) {
+  function get(texture) {
     if (texture && texture.isTexture && texture.isRenderTargetTexture === false) {
       const mapping = texture.mapping;
       if (mapping === EquirectangularReflectionMapping || mapping === EquirectangularRefractionMapping) {
@@ -6142,7 +6058,7 @@ function WebGLCubeMaps(renderer) {
     cubemaps = new WeakMap();
   }
   return {
-    get: get2,
+    get,
     dispose
   };
 }
@@ -6553,7 +6469,7 @@ function _getEncodings() {
 function WebGLCubeUVMaps(renderer) {
   let cubeUVmaps = new WeakMap();
   let pmremGenerator = null;
-  function get2(texture) {
+  function get(texture) {
     if (texture && texture.isTexture && texture.isRenderTargetTexture === false) {
       const mapping = texture.mapping;
       const isEquirectMap = mapping === EquirectangularReflectionMapping || mapping === EquirectangularRefractionMapping;
@@ -6606,7 +6522,7 @@ function WebGLCubeUVMaps(renderer) {
     }
   }
   return {
-    get: get2,
+    get,
     dispose
   };
 }
@@ -6690,7 +6606,7 @@ function WebGLGeometries(gl, attributes, info, bindingStates) {
     }
     info.memory.geometries--;
   }
-  function get2(object, geometry) {
+  function get(object, geometry) {
     if (geometries[geometry.id] === true)
       return geometry;
     geometry.addEventListener("dispose", onGeometryDispose);
@@ -6757,7 +6673,7 @@ function WebGLGeometries(gl, attributes, info, bindingStates) {
     return wireframeAttributes.get(geometry);
   }
   return {
-    get: get2,
+    get,
     update: update2,
     getWireframeAttribute
   };
@@ -8398,7 +8314,7 @@ function WebGLPrograms(renderer, cubemaps, cubeuvmaps, extensions, capabilities,
 }
 function WebGLProperties() {
   let properties = new WeakMap();
-  function get2(object) {
+  function get(object) {
     let map = properties.get(object);
     if (map === void 0) {
       map = {};
@@ -8416,7 +8332,7 @@ function WebGLProperties() {
     properties = new WeakMap();
   }
   return {
-    get: get2,
+    get,
     remove,
     update: update2,
     dispose
@@ -8545,7 +8461,7 @@ function WebGLRenderList(properties) {
 }
 function WebGLRenderLists(properties) {
   let lists = new WeakMap();
-  function get2(scene, renderCallDepth) {
+  function get(scene, renderCallDepth) {
     let list;
     if (lists.has(scene) === false) {
       list = new WebGLRenderList(properties);
@@ -8564,7 +8480,7 @@ function WebGLRenderLists(properties) {
     lists = new WeakMap();
   }
   return {
-    get: get2,
+    get,
     dispose
   };
 }
@@ -8949,7 +8865,7 @@ function WebGLRenderState(extensions, capabilities) {
 }
 function WebGLRenderStates(extensions, capabilities) {
   let renderStates = new WeakMap();
-  function get2(scene, renderCallDepth = 0) {
+  function get(scene, renderCallDepth = 0) {
     let renderState;
     if (renderStates.has(scene) === false) {
       renderState = new WebGLRenderState(extensions, capabilities);
@@ -8968,7 +8884,7 @@ function WebGLRenderStates(extensions, capabilities) {
     renderStates = new WeakMap();
   }
   return {
-    get: get2,
+    get,
     dispose
   };
 }
@@ -13009,11 +12925,11 @@ function copyBounds(source, target) {
 }
 function unionBounds(a, b, target) {
   let aVal, bVal;
-  for (let d2 = 0; d2 < 3; d2++) {
-    const d3 = d2 + 3;
-    aVal = a[d2];
-    bVal = b[d2];
-    target[d2] = aVal < bVal ? aVal : bVal;
+  for (let d = 0; d < 3; d++) {
+    const d3 = d + 3;
+    aVal = a[d];
+    bVal = b[d];
+    target[d] = aVal < bVal ? aVal : bVal;
     aVal = a[d3];
     bVal = b[d3];
     target[d3] = aVal > bVal ? aVal : bVal;
@@ -13215,9 +13131,9 @@ function getOptimalSplit(nodeBoundingData, centroidBoundingData, triangleBounds,
         bin.count = 0;
         bin.candidate = axisLeft + binWidth + i * binWidth;
         const bounds = bin.bounds;
-        for (let d2 = 0; d2 < 3; d2++) {
-          bounds[d2] = Infinity;
-          bounds[d2 + 3] = -Infinity;
+        for (let d = 0; d < 3; d++) {
+          bounds[d] = Infinity;
+          bounds[d + 3] = -Infinity;
         }
       }
       for (let c = cStart; c < cEnd; c += 6) {
@@ -13229,16 +13145,16 @@ function getOptimalSplit(nodeBoundingData, centroidBoundingData, triangleBounds,
         const bin = sahBins[binIndex];
         bin.count++;
         const bounds = bin.bounds;
-        for (let d2 = 0; d2 < 3; d2++) {
-          const tCenter = triangleBounds[c + 2 * d2];
-          const tHalf = triangleBounds[c + 2 * d2 + 1];
+        for (let d = 0; d < 3; d++) {
+          const tCenter = triangleBounds[c + 2 * d];
+          const tHalf = triangleBounds[c + 2 * d + 1];
           const tMin = tCenter - tHalf;
           const tMax = tCenter + tHalf;
-          if (tMin < bounds[d2]) {
-            bounds[d2] = tMin;
+          if (tMin < bounds[d]) {
+            bounds[d] = tMin;
           }
-          if (tMax > bounds[d2 + 3]) {
-            bounds[d2 + 3] = tMax;
+          if (tMax > bounds[d + 3]) {
+            bounds[d + 3] = tMax;
           }
         }
       }
@@ -13715,10 +13631,10 @@ function disposeBoundsTree() {
   this.boundsTree = null;
 }
 var import_cookie3, __defProp2, __defNormalProp, __publicField, REVISION, MOUSE, TOUCH, CullFaceNone, CullFaceBack, CullFaceFront, PCFShadowMap, PCFSoftShadowMap, VSMShadowMap, FrontSide, BackSide, DoubleSide, FlatShading, NoBlending, NormalBlending, AdditiveBlending, SubtractiveBlending, MultiplyBlending, CustomBlending, AddEquation, SubtractEquation, ReverseSubtractEquation, MinEquation, MaxEquation, ZeroFactor, OneFactor, SrcColorFactor, OneMinusSrcColorFactor, SrcAlphaFactor, OneMinusSrcAlphaFactor, DstAlphaFactor, OneMinusDstAlphaFactor, DstColorFactor, OneMinusDstColorFactor, SrcAlphaSaturateFactor, NeverDepth, AlwaysDepth, LessDepth, LessEqualDepth, EqualDepth, GreaterEqualDepth, GreaterDepth, NotEqualDepth, MultiplyOperation, MixOperation, AddOperation, NoToneMapping, LinearToneMapping, ReinhardToneMapping, CineonToneMapping, ACESFilmicToneMapping, CustomToneMapping, UVMapping, CubeReflectionMapping, CubeRefractionMapping, EquirectangularReflectionMapping, EquirectangularRefractionMapping, CubeUVReflectionMapping, CubeUVRefractionMapping, RepeatWrapping, ClampToEdgeWrapping, MirroredRepeatWrapping, NearestFilter, NearestMipmapNearestFilter, NearestMipmapLinearFilter, LinearFilter, LinearMipmapNearestFilter, LinearMipmapLinearFilter, UnsignedByteType, ByteType, ShortType, UnsignedShortType, IntType, UnsignedIntType, FloatType, HalfFloatType, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedShort565Type, UnsignedInt248Type, AlphaFormat, RGBFormat, RGBAFormat, LuminanceFormat, LuminanceAlphaFormat, RGBEFormat, DepthFormat, DepthStencilFormat, RedFormat, RedIntegerFormat, RGFormat, RGIntegerFormat, RGBIntegerFormat, RGBAIntegerFormat, RGB_S3TC_DXT1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGB_PVRTC_4BPPV1_Format, RGB_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_PVRTC_2BPPV1_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGBA_ETC2_EAC_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_10x10_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_BPTC_Format, SRGB8_ALPHA8_ASTC_4x4_Format, SRGB8_ALPHA8_ASTC_5x4_Format, SRGB8_ALPHA8_ASTC_5x5_Format, SRGB8_ALPHA8_ASTC_6x5_Format, SRGB8_ALPHA8_ASTC_6x6_Format, SRGB8_ALPHA8_ASTC_8x5_Format, SRGB8_ALPHA8_ASTC_8x6_Format, SRGB8_ALPHA8_ASTC_8x8_Format, SRGB8_ALPHA8_ASTC_10x5_Format, SRGB8_ALPHA8_ASTC_10x6_Format, SRGB8_ALPHA8_ASTC_10x8_Format, SRGB8_ALPHA8_ASTC_10x10_Format, SRGB8_ALPHA8_ASTC_12x10_Format, SRGB8_ALPHA8_ASTC_12x12_Format, LoopOnce, LoopRepeat, LoopPingPong, InterpolateDiscrete, InterpolateLinear, InterpolateSmooth, ZeroCurvatureEnding, ZeroSlopeEnding, WrapAroundEnding, NormalAnimationBlendMode, AdditiveAnimationBlendMode, TrianglesDrawMode, LinearEncoding, sRGBEncoding, GammaEncoding, RGBEEncoding, RGBM7Encoding, RGBM16Encoding, RGBDEncoding, BasicDepthPacking, RGBADepthPacking, TangentSpaceNormalMap, ObjectSpaceNormalMap, KeepStencilOp, AlwaysStencilFunc, StaticDrawUsage, DynamicDrawUsage, GLSL3, EventDispatcher, _lut, _seed, DEG2RAD, RAD2DEG, MathUtils, Vector2, Matrix3, _canvas, ImageUtils, textureId, Texture, Vector4, WebGLRenderTarget, WebGLMultipleRenderTargets, WebGLMultisampleRenderTarget, Quaternion, Vector3, _vector$c, _quaternion$4, Box3, _points, _vector$b, _box$3, _v0$2, _v1$7, _v2$3, _f0, _f1, _f2, _center, _extents, _triangleNormal, _testAxis, _box$2, _v1$6, _toFarthestPoint, _toPoint, Sphere, _vector$a, _segCenter, _segDir, _diff, _edge1, _edge2, _normal$1, Ray, Matrix4, _v1$5, _m1$2, _zero, _one, _x, _y, _z, _matrix$1, _quaternion$3, Euler, Layers, _object3DId, _v1$4, _q1, _m1$1, _target, _position$3, _scale$2, _quaternion$2, _xAxis, _yAxis, _zAxis, _addedEvent, _removedEvent, Object3D, _v0$1, _v1$3, _v2$2, _v3$1, _vab, _vac, _vbc, _vap, _vbp, _vcp, Triangle, materialId, Material, _colorKeywords, _hslA, _hslB, Color, MeshBasicMaterial, _vector$9, _vector2$1, BufferAttribute, Uint16BufferAttribute, Uint32BufferAttribute, Float16BufferAttribute, Float32BufferAttribute, _id, _m1, _obj, _offset, _box$1, _boxMorphTargets, _vector$8, BufferGeometry, _inverseMatrix$2, _ray$2, _sphere$3, _vA$1, _vB$1, _vC$1, _tempA, _tempB, _tempC, _morphA, _morphB, _morphC, _uvA$1, _uvB$1, _uvC$1, _intersectionPoint, _intersectionPointWorld, Mesh, BoxGeometry, UniformsUtils, default_vertex, default_fragment, ShaderMaterial, Camera$1, PerspectiveCamera, fov, aspect, CubeCamera, CubeTexture, WebGLCubeRenderTarget, _vector1, _vector2, _normalMatrix, Plane, _sphere$2, _vector$7, Frustum, PlaneGeometry, alphamap_fragment, alphamap_pars_fragment, alphatest_fragment, alphatest_pars_fragment, aomap_fragment, aomap_pars_fragment, begin_vertex, beginnormal_vertex, bsdfs, bumpmap_pars_fragment, clipping_planes_fragment, clipping_planes_pars_fragment, clipping_planes_pars_vertex, clipping_planes_vertex, color_fragment, color_pars_fragment, color_pars_vertex, color_vertex, common, cube_uv_reflection_fragment, defaultnormal_vertex, displacementmap_pars_vertex, displacementmap_vertex, emissivemap_fragment, emissivemap_pars_fragment, encodings_fragment, encodings_pars_fragment, envmap_fragment, envmap_common_pars_fragment, envmap_pars_fragment, envmap_pars_vertex, envmap_vertex, fog_vertex, fog_pars_vertex, fog_fragment, fog_pars_fragment, gradientmap_pars_fragment, lightmap_fragment, lightmap_pars_fragment, lights_lambert_vertex, lights_pars_begin, envmap_physical_pars_fragment, lights_toon_fragment, lights_toon_pars_fragment, lights_phong_fragment, lights_phong_pars_fragment, lights_physical_fragment, lights_physical_pars_fragment, lights_fragment_begin, lights_fragment_maps, lights_fragment_end, logdepthbuf_fragment, logdepthbuf_pars_fragment, logdepthbuf_pars_vertex, logdepthbuf_vertex, map_fragment, map_pars_fragment, map_particle_fragment, map_particle_pars_fragment, metalnessmap_fragment, metalnessmap_pars_fragment, morphnormal_vertex, morphtarget_pars_vertex, morphtarget_vertex, normal_fragment_begin, normal_fragment_maps, normal_pars_fragment, normal_pars_vertex, normal_vertex, normalmap_pars_fragment, clearcoat_normal_fragment_begin, clearcoat_normal_fragment_maps, clearcoat_pars_fragment, output_fragment, packing, premultiplied_alpha_fragment, project_vertex, dithering_fragment, dithering_pars_fragment, roughnessmap_fragment, roughnessmap_pars_fragment, shadowmap_pars_fragment, shadowmap_pars_vertex, shadowmap_vertex, shadowmask_pars_fragment, skinbase_vertex, skinning_pars_vertex, skinning_vertex, skinnormal_vertex, specularmap_fragment, specularmap_pars_fragment, tonemapping_fragment, tonemapping_pars_fragment, transmission_fragment, transmission_pars_fragment, uv_pars_fragment, uv_pars_vertex, uv_vertex, uv2_pars_fragment, uv2_pars_vertex, uv2_vertex, worldpos_vertex, vertex$g, fragment$g, vertex$f, fragment$f, vertex$e, fragment$e, vertex$d, fragment$d, vertex$c, fragment$c, vertex$b, fragment$b, vertex$a, fragment$a, vertex$9, fragment$9, vertex$8, fragment$8, vertex$7, fragment$7, vertex$6, fragment$6, vertex$5, fragment$5, vertex$4, fragment$4, vertex$3, fragment$3, vertex$2, fragment$2, vertex$1, fragment$1, ShaderChunk, UniformsLib, ShaderLib, OrthographicCamera, RawShaderMaterial, LOD_MIN, LOD_MAX, SIZE_MAX, EXTRA_LOD_SIGMA, TOTAL_LODS, MAX_SAMPLES, ENCODINGS, _flatCamera, _lodPlanes, _sizeLods, _sigmas, _clearColor, _oldTarget, PHI, INV_PHI, _axisDirections, PMREMGenerator, DataTexture2DArray, DataTexture3D, emptyTexture, emptyTexture2dArray, emptyTexture3d, emptyCubeTexture, arrayCacheF32, arrayCacheI32, mat4array, mat3array, mat2array, RePathPart, programIdCount, includePattern, deprecatedUnrollLoopPattern, unrollLoopPattern, nextVersion, MeshDepthMaterial, MeshDistanceMaterial, vertex, fragment, ArrayCamera, Group, _moveEvent, WebXRController, DepthTexture, WebXRManager, WebGL1Renderer, Scene, InterleavedBuffer, _vector$6, InterleavedBufferAttribute, SpriteMaterial, _geometry, _intersectPoint, _worldScale, _mvPosition, _alignedPosition, _rotatedPosition, _viewWorldMatrix, _vA, _vB, _vC, _uvA, _uvB, _uvC, Sprite, _basePosition, _skinIndex, _skinWeight, _vector$5, _matrix, SkinnedMesh, Bone, DataTexture, InstancedBufferAttribute, _instanceLocalMatrix, _instanceWorldMatrix, _instanceIntersects, _mesh, InstancedMesh, LineBasicMaterial, _start$1, _end$1, _inverseMatrix$1, _ray$1, _sphere$1, Line, _start, _end, LineSegments, LineLoop, PointsMaterial, _inverseMatrix, _ray, _sphere, _position$2, Points, VideoTexture, CompressedTexture, CanvasTexture, Curve, EllipseCurve, ArcCurve, tmp, px, py, pz, CatmullRomCurve3, CubicBezierCurve, CubicBezierCurve3, LineCurve, LineCurve3, QuadraticBezierCurve, QuadraticBezierCurve3, SplineCurve, Curves, CurvePath, Path, Shape, Earcut, ShapeUtils, ExtrudeGeometry, WorldUVGenerator, ShapeGeometry, ShadowMaterial, MeshStandardMaterial, MeshPhysicalMaterial, MeshPhongMaterial, MeshToonMaterial, MeshNormalMaterial, MeshLambertMaterial, MeshMatcapMaterial, LineDashedMaterial, AnimationUtils, Interpolant, CubicInterpolant, LinearInterpolant, DiscreteInterpolant, KeyframeTrack, BooleanKeyframeTrack, ColorKeyframeTrack, NumberKeyframeTrack, QuaternionLinearInterpolant, QuaternionKeyframeTrack, StringKeyframeTrack, VectorKeyframeTrack, AnimationClip, Cache, LoadingManager, DefaultLoadingManager, Loader, loading, FileLoader, ImageLoader, CubeTextureLoader, TextureLoader, Light$1, HemisphereLight, _projScreenMatrix$1, _lightPositionWorld$1, _lookTarget$1, LightShadow, SpotLightShadow, SpotLight, _projScreenMatrix, _lightPositionWorld, _lookTarget, PointLightShadow, PointLight, DirectionalLightShadow, DirectionalLight, AmbientLight, RectAreaLight, SphericalHarmonics3, LightProbe, LoaderUtils, InstancedBufferGeometry, ImageBitmapLoader, _context, AudioContext, AudioLoader, HemisphereLightProbe, AmbientLightProbe, Audio, PropertyMixer, _RESERVED_CHARS_RE, _reservedRe, _wordChar, _wordCharOrDot, _directoryRe, _nodeRe, _objectRe, _propertyRe, _trackRe, _supportedObjectNames, Composite, PropertyBinding, AnimationAction, AnimationMixer, InstancedInterleavedBuffer, Spherical, _startP, _startEnd, Line3, _vector$2, _boneMatrix, _matrixWorldInv, SkeletonHelper, GridHelper, _v1, _v2, _v3, DirectionalLightHelper, _vector, _camera, CameraHelper, _floatView, subscriber_queue, svelthreeStores, CameraValues, _XRDefaults, XRDefaults, _XRHandJointIndices, XRHandJointIndices, _XRHandRayConfigs, XRHandRayConfigs, _XRHandTouchDefaults, XRHandTouchDefaults, CameraUtils, PropUtils, LightUtils, StoreUtils, Propeller, PropArray3X, PropEulerX, PropEulerArrayX, PropMatrix4X, PropMatrix4ArrayX, PropQuaternionX, PropQuaternionArrayX, PropVector3X, PropColorX, SvelthreeProps, SvelthreeAnimationProp, SvelthreeAnimationManager, SvelthreeAnimation, css_rs$5, Camera, css_rs$4, Light, SvelthreeInteraction, SvelthreeInteractionAR, SvelthreeInteractionVRGrippable, SvelthreeInteractionVRHands, SvelthreeLightWithShadow, PerspectiveCamera_1, css_rs$3, Points_1, CENTER, AVERAGE, SAH, CONTAINED, TRIANGLE_INTERSECT_COST, TRAVERSAL_COST, BYTES_PER_NODE, IS_LEAFNODE_FLAG, FLOAT32_EPSILON, MeshBVHNode, BIN_COUNT, sahBins, leftBounds, SeparatingAxisBounds, closestPointLineToLine, closestPointsSegmentToSegment, sphereIntersectTriangle, SeparatingAxisTriangle, OrientedBox, vA, vB, vC, uvA, uvB, uvC, intersectionPoint, PrimitivePool, boundingBox, boxIntersection, xyzFields, shapecast, intersectsGeometry, bufferStack, _prevBuffer, _float32Array, _uint16Array, _uint32Array, SKIP_GENERATION, aabb, aabb2, tempMatrix, obb, obb2, temp, temp1, temp2, temp3, temp4, tempBox, trianglePool, MeshBVH, originalRaycast, originalRaycastFirst, originalClosestPointToPoint, originalClosestPointToGeometry, originalRefit, ray, tmpInverseMatrix, origMeshRaycastFunc, css_rs$2, Canvas, css_rs$1, DirectionalLight_1, AmbientLight_1, Scene_1, XRHitTestAR, css_rs, WebGLRenderer_1, _changeEvent, _startEvent, _endEvent, OrbitControls, OrbitControls_1, prerender, Routes;
-var init_index_747446a9 = __esm({
-  ".svelte-kit/output/server/chunks/index-747446a9.js"() {
+var init_index_043ca214 = __esm({
+  ".svelte-kit/output/server/chunks/index-043ca214.js"() {
     init_shims();
-    init_app_8b464c42();
+    init_app_2f99d4d4();
     import_cookie3 = __toModule(require_cookie());
     init_dist();
     __defProp2 = Object.defineProperty;
@@ -14335,8 +14251,8 @@ var init_index_747446a9 = __esm({
       }
       determinant() {
         const te = this.elements;
-        const a = te[0], b = te[1], c = te[2], d2 = te[3], e = te[4], f = te[5], g = te[6], h = te[7], i = te[8];
-        return a * e * i - a * f * h - b * d2 * i + b * f * g + c * d2 * h - c * e * g;
+        const a = te[0], b = te[1], c = te[2], d = te[3], e = te[4], f = te[5], g = te[6], h = te[7], i = te[8];
+        return a * e * i - a * f * h - b * d * i + b * f * g + c * d * h - c * e * g;
       }
       invert() {
         const te = this.elements, n11 = te[0], n21 = te[1], n31 = te[2], n12 = te[3], n22 = te[4], n32 = te[5], n13 = te[6], n23 = te[7], n33 = te[8], t11 = n33 * n22 - n32 * n23, t12 = n32 * n13 - n33 * n12, t13 = n23 * n12 - n22 * n13, det = n11 * t11 + n21 * t12 + n31 * t13;
@@ -16784,24 +16700,24 @@ var init_index_747446a9 = __esm({
         const te = this.elements;
         const x = euler.x, y = euler.y, z = euler.z;
         const a = Math.cos(x), b = Math.sin(x);
-        const c = Math.cos(y), d2 = Math.sin(y);
+        const c = Math.cos(y), d = Math.sin(y);
         const e = Math.cos(z), f = Math.sin(z);
         if (euler.order === "XYZ") {
           const ae = a * e, af = a * f, be = b * e, bf = b * f;
           te[0] = c * e;
           te[4] = -c * f;
-          te[8] = d2;
-          te[1] = af + be * d2;
-          te[5] = ae - bf * d2;
+          te[8] = d;
+          te[1] = af + be * d;
+          te[5] = ae - bf * d;
           te[9] = -b * c;
-          te[2] = bf - ae * d2;
-          te[6] = be + af * d2;
+          te[2] = bf - ae * d;
+          te[6] = be + af * d;
           te[10] = a * c;
         } else if (euler.order === "YXZ") {
-          const ce = c * e, cf = c * f, de = d2 * e, df = d2 * f;
+          const ce = c * e, cf = c * f, de = d * e, df = d * f;
           te[0] = ce + df * b;
           te[4] = de * b - cf;
-          te[8] = a * d2;
+          te[8] = a * d;
           te[1] = a * f;
           te[5] = a * e;
           te[9] = -b;
@@ -16809,43 +16725,43 @@ var init_index_747446a9 = __esm({
           te[6] = df + ce * b;
           te[10] = a * c;
         } else if (euler.order === "ZXY") {
-          const ce = c * e, cf = c * f, de = d2 * e, df = d2 * f;
+          const ce = c * e, cf = c * f, de = d * e, df = d * f;
           te[0] = ce - df * b;
           te[4] = -a * f;
           te[8] = de + cf * b;
           te[1] = cf + de * b;
           te[5] = a * e;
           te[9] = df - ce * b;
-          te[2] = -a * d2;
+          te[2] = -a * d;
           te[6] = b;
           te[10] = a * c;
         } else if (euler.order === "ZYX") {
           const ae = a * e, af = a * f, be = b * e, bf = b * f;
           te[0] = c * e;
-          te[4] = be * d2 - af;
-          te[8] = ae * d2 + bf;
+          te[4] = be * d - af;
+          te[8] = ae * d + bf;
           te[1] = c * f;
-          te[5] = bf * d2 + ae;
-          te[9] = af * d2 - be;
-          te[2] = -d2;
+          te[5] = bf * d + ae;
+          te[9] = af * d - be;
+          te[2] = -d;
           te[6] = b * c;
           te[10] = a * c;
         } else if (euler.order === "YZX") {
-          const ac = a * c, ad = a * d2, bc = b * c, bd = b * d2;
+          const ac = a * c, ad = a * d, bc = b * c, bd = b * d;
           te[0] = c * e;
           te[4] = bd - ac * f;
           te[8] = bc * f + ad;
           te[1] = f;
           te[5] = a * e;
           te[9] = -b * e;
-          te[2] = -d2 * e;
+          te[2] = -d * e;
           te[6] = ad * f + bc;
           te[10] = ac - bd * f;
         } else if (euler.order === "XZY") {
-          const ac = a * c, ad = a * d2, bc = b * c, bd = b * d2;
+          const ac = a * c, ad = a * d, bc = b * c, bd = b * d;
           te[0] = c * e;
           te[4] = -f;
-          te[8] = d2 * e;
+          te[8] = d * e;
           te[1] = ac * f + bd;
           te[5] = a * e;
           te[9] = ad * f - bc;
@@ -17149,7 +17065,7 @@ var init_index_747446a9 = __esm({
         const a = (right + left) / (right - left);
         const b = (top + bottom) / (top - bottom);
         const c = -(far + near) / (far - near);
-        const d2 = -2 * far * near / (far - near);
+        const d = -2 * far * near / (far - near);
         te[0] = x;
         te[4] = 0;
         te[8] = a;
@@ -17161,7 +17077,7 @@ var init_index_747446a9 = __esm({
         te[2] = 0;
         te[6] = 0;
         te[10] = c;
-        te[14] = d2;
+        te[14] = d;
         te[3] = 0;
         te[7] = 0;
         te[11] = -1;
@@ -20051,9 +19967,9 @@ var init_index_747446a9 = __esm({
               const a = numberOfVertices + ix + gridX1 * iy;
               const b = numberOfVertices + ix + gridX1 * (iy + 1);
               const c = numberOfVertices + (ix + 1) + gridX1 * (iy + 1);
-              const d2 = numberOfVertices + (ix + 1) + gridX1 * iy;
-              indices.push(a, b, d2);
-              indices.push(b, c, d2);
+              const d = numberOfVertices + (ix + 1) + gridX1 * iy;
+              indices.push(a, b, d);
+              indices.push(b, c, d);
               groupCount += 6;
             }
           }
@@ -20729,9 +20645,9 @@ var init_index_747446a9 = __esm({
             const a = ix + gridX1 * iy;
             const b = ix + gridX1 * (iy + 1);
             const c = ix + 1 + gridX1 * (iy + 1);
-            const d2 = ix + 1 + gridX1 * iy;
-            indices.push(a, b, d2);
-            indices.push(b, c, d2);
+            const d = ix + 1 + gridX1 * iy;
+            indices.push(a, b, d);
+            indices.push(b, c, d);
           }
         }
         this.setIndex(indices);
@@ -23405,15 +23321,15 @@ var init_index_747446a9 = __esm({
       }
       getPoints(divisions = 5) {
         const points = [];
-        for (let d2 = 0; d2 <= divisions; d2++) {
-          points.push(this.getPoint(d2 / divisions));
+        for (let d = 0; d <= divisions; d++) {
+          points.push(this.getPoint(d / divisions));
         }
         return points;
       }
       getSpacedPoints(divisions = 5) {
         const points = [];
-        for (let d2 = 0; d2 <= divisions; d2++) {
-          points.push(this.getPointAt(d2 / divisions));
+        for (let d = 0; d <= divisions; d++) {
+          points.push(this.getPointAt(d / divisions));
         }
         return points;
       }
@@ -24093,12 +24009,12 @@ var init_index_747446a9 = __esm({
         }
       }
       getPoint(t, optionalTarget) {
-        const d2 = t * this.getLength();
+        const d = t * this.getLength();
         const curveLengths = this.getCurveLengths();
         let i = 0;
         while (i < curveLengths.length) {
-          if (curveLengths[i] >= d2) {
-            const diff = curveLengths[i] - d2;
+          if (curveLengths[i] >= d) {
+            const diff = curveLengths[i] - d;
             const curve = this.curves[i];
             const segmentLength = curve.getLength();
             const u = segmentLength === 0 ? 0 : 1 - diff / segmentLength;
@@ -24661,8 +24577,8 @@ var init_index_747446a9 = __esm({
               for (let s2 = 0, sl = steps + bevelSegments * 2; s2 < sl; s2++) {
                 const slen1 = vlen * s2;
                 const slen2 = vlen * (s2 + 1);
-                const a = layeroffset + j + slen1, b = layeroffset + k + slen1, c = layeroffset + k + slen2, d2 = layeroffset + j + slen2;
-                f4(a, b, c, d2);
+                const a = layeroffset + j + slen1, b = layeroffset + k + slen1, c = layeroffset + k + slen2, d = layeroffset + j + slen2;
+                f4(a, b, c, d);
               }
             }
           }
@@ -24681,13 +24597,13 @@ var init_index_747446a9 = __esm({
             addUV(uvs[1]);
             addUV(uvs[2]);
           }
-          function f4(a, b, c, d2) {
+          function f4(a, b, c, d) {
             addVertex(a);
             addVertex(b);
-            addVertex(d2);
+            addVertex(d);
             addVertex(b);
             addVertex(c);
-            addVertex(d2);
+            addVertex(d);
             const nextIndex = verticesArray.length / 3;
             const uvs = uvgen.generateSideWallUV(scope, verticesArray, nextIndex - 6, nextIndex - 3, nextIndex - 2, nextIndex - 1);
             addUV(uvs[0]);
@@ -33330,15 +33246,15 @@ ${$svelthreeStores[sti].renderer && $svelthreeStores[sti].renderer.xr.enabled ==
         const d0210 = v02.dot(v10);
         const d1010 = v10.dot(v10);
         const denom = d1010 * d3232 - d3210 * d3210;
-        let d2, d22;
+        let d, d2;
         if (denom !== 0) {
-          d2 = (d0232 * d3210 - d0210 * d3232) / denom;
+          d = (d0232 * d3210 - d0210 * d3232) / denom;
         } else {
-          d2 = 0;
+          d = 0;
         }
-        d22 = (d0232 + d2 * d3210) / d3232;
-        result.x = d2;
-        result.y = d22;
+        d2 = (d0232 + d * d3210) / d3232;
+        result.x = d;
+        result.y = d2;
       };
     }();
     closestPointsSegmentToSegment = function() {
@@ -33347,22 +33263,22 @@ ${$svelthreeStores[sti].renderer && $svelthreeStores[sti].renderer.xr.enabled ==
       const temp22 = new Vector3();
       return function closestPointsSegmentToSegment2(l1, l2, target1, target2) {
         closestPointLineToLine(l1, l2, paramResult);
-        let d2 = paramResult.x;
-        let d22 = paramResult.y;
-        if (d2 >= 0 && d2 <= 1 && d22 >= 0 && d22 <= 1) {
-          l1.at(d2, target1);
-          l2.at(d22, target2);
+        let d = paramResult.x;
+        let d2 = paramResult.y;
+        if (d >= 0 && d <= 1 && d2 >= 0 && d2 <= 1) {
+          l1.at(d, target1);
+          l2.at(d2, target2);
           return;
-        } else if (d2 >= 0 && d2 <= 1) {
-          if (d22 < 0) {
+        } else if (d >= 0 && d <= 1) {
+          if (d2 < 0) {
             l2.at(0, target2);
           } else {
             l2.at(1, target2);
           }
           l1.closestPointToPoint(target2, true, target1);
           return;
-        } else if (d22 >= 0 && d22 <= 1) {
-          if (d2 < 0) {
+        } else if (d2 >= 0 && d2 <= 1) {
+          if (d < 0) {
             l1.at(0, target1);
           } else {
             l1.at(1, target1);
@@ -33371,13 +33287,13 @@ ${$svelthreeStores[sti].renderer && $svelthreeStores[sti].renderer.xr.enabled ==
           return;
         } else {
           let p;
-          if (d2 < 0) {
+          if (d < 0) {
             p = l1.start;
           } else {
             p = l1.end;
           }
           let p2;
-          if (d22 < 0) {
+          if (d2 < 0) {
             p2 = l2.start;
           } else {
             p2 = l2.end;
@@ -36509,7 +36425,13 @@ ${validate_component(XRHitTestAR, "XRHitTestAR").$$render($$result, { sti, this:
       let $$rendered;
       do {
         $$settled = true;
-        $$rendered = `<main>${validate_component(Canvas, "Canvas").$$render($$result, { w: 800, h: 600, interactive: true }, {}, {
+        $$rendered = `<h1>SvelteKit + <a href="${"https://github.com/vatro/svelthree"}">svelthree</a> Integration Test</h1>
+${validate_component(Canvas, "Canvas").$$render($$result, {
+          w: 800,
+          h: 600,
+          interactive: true,
+          style: "margin: auto; border: 1px solid;"
+        }, {}, {
           default: ({ sti }) => `${validate_component(Scene_1, "Scene").$$render($$result, {
             sti,
             id: "scene1",
@@ -36524,14 +36446,14 @@ ${validate_component(XRHitTestAR, "XRHitTestAR").$$render($$result, { sti, this:
               }
             }, {}, {})}
 
-            ${validate_component(DirectionalLight_1, "DirectionalLight").$$render($$result, { scene }, {}, {})}
+		${validate_component(DirectionalLight_1, "DirectionalLight").$$render($$result, { scene }, {}, {})}
 
-            ${validate_component(AmbientLight_1, "AmbientLight").$$render($$result, {
+		${validate_component(AmbientLight_1, "AmbientLight").$$render($$result, {
               scene,
               props: { color: 16777215, intensity: 1 }
             }, {}, {})}
 
-            ${validate_component(Points_1, "Points").$$render($$result, {
+		${validate_component(Points_1, "Points").$$render($$result, {
               scene,
               geometry,
               material,
@@ -36545,39 +36467,39 @@ ${validate_component(XRHitTestAR, "XRHitTestAR").$$render($$result, { sti, this:
                 $$settled = false;
               }
             }, {})}
-            ${validate_component(OrbitControls_1, "OrbitControls").$$render($$result, {
+		${validate_component(OrbitControls_1, "OrbitControls").$$render($$result, {
               scene,
               autoRotate: true,
               enableDamping: true
             }, {}, {})}`
           })}
 
-        ${validate_component(WebGLRenderer_1, "WebGLRenderer").$$render($$result, {
+	${validate_component(WebGLRenderer_1, "WebGLRenderer").$$render($$result, {
             sti,
             sceneId: "scene1",
             camId: "cam1",
             config: { antialias: true, alpha: false }
           }, {}, {})}`
-        })}</main>`;
+        })}`;
       } while (!$$settled);
       return $$rendered;
     });
   }
 });
 
-// .svelte-kit/output/server/chunks/about-5bb777ba.js
-var about_5bb777ba_exports = {};
-__export(about_5bb777ba_exports, {
+// .svelte-kit/output/server/chunks/about-df280ce0.js
+var about_df280ce0_exports = {};
+__export(about_df280ce0_exports, {
   default: () => About,
   hydrate: () => hydrate,
   prerender: () => prerender2,
   router: () => router
 });
 var import_cookie4, browser, dev, css2, hydrate, router, prerender2, About;
-var init_about_5bb777ba = __esm({
-  ".svelte-kit/output/server/chunks/about-5bb777ba.js"() {
+var init_about_df280ce0 = __esm({
+  ".svelte-kit/output/server/chunks/about-df280ce0.js"() {
     init_shims();
-    init_app_8b464c42();
+    init_app_2f99d4d4();
     import_cookie4 = __toModule(require_cookie());
     init_dist();
     browser = false;
@@ -36593,7 +36515,7 @@ var init_about_5bb777ba = __esm({
       $$result.css.add(css2);
       return `${$$result.head += `${$$result.title = `<title>About</title>`, ""}`, ""}
 
-<div class="${"content svelte-cf77e8"}"><h1>About this app</h1>
+<div class="${"content svelte-cf77e8"}"><h1>SvelteKit + <a href="${"https://github.com/vatro/svelthree"}">svelthree</a> Integration Test</h1>
 
 	<p>This is a <a href="${"https://kit.svelte.dev"}">SvelteKit</a> app. You can make your own by typing the
 		following into your command line and following the prompts:
@@ -36607,65 +36529,12 @@ var init_about_5bb777ba = __esm({
 		the devtools network panel and reloading.
 	</p>
 
-	<p>The <a href="${"/todos"}">TODOs</a> page illustrates SvelteKit&#39;s data loading and form handling. Try using
-		it with JavaScript disabled!
-	</p>
 </div>`;
     });
   }
 });
 
-// .svelte-kit/output/server/chunks/index-6c740da7.js
-var index_6c740da7_exports = {};
-__export(index_6c740da7_exports, {
-  default: () => Todos,
-  load: () => load2
-});
-var import_cookie5, css3, load2, Todos;
-var init_index_6c740da7 = __esm({
-  ".svelte-kit/output/server/chunks/index-6c740da7.js"() {
-    init_shims();
-    init_app_8b464c42();
-    import_cookie5 = __toModule(require_cookie());
-    init_dist();
-    css3 = {
-      code: `.todos.svelte-dmxqmd.svelte-dmxqmd.svelte-dmxqmd{width:100%;max-width:var(--column-width);margin:var(--column-margin-top) auto 0 auto;line-height:1}.new.svelte-dmxqmd.svelte-dmxqmd.svelte-dmxqmd{margin:0 0 0.5rem 0}input.svelte-dmxqmd.svelte-dmxqmd.svelte-dmxqmd{border:1px solid transparent}input.svelte-dmxqmd.svelte-dmxqmd.svelte-dmxqmd:focus-visible{box-shadow:inset 1px 1px 6px rgba(0, 0, 0, 0.1);border:1px solid #ff3e00 !important;outline:none}.new.svelte-dmxqmd input.svelte-dmxqmd.svelte-dmxqmd{font-size:28px;width:100%;padding:0.5em 1em 0.3em 1em;box-sizing:border-box;background:rgba(255, 255, 255, 0.05);border-radius:8px;text-align:center}.todo.svelte-dmxqmd.svelte-dmxqmd.svelte-dmxqmd{display:grid;grid-template-columns:2rem 1fr 2rem;grid-gap:0.5rem;align-items:center;margin:0 0 0.5rem 0;padding:0.5rem;background-color:white;border-radius:8px;filter:drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.1));transform:translate(-1px, -1px);transition:filter 0.2s, transform 0.2s}.done.svelte-dmxqmd.svelte-dmxqmd.svelte-dmxqmd{transform:none;opacity:0.4;filter:drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.1))}form.text.svelte-dmxqmd.svelte-dmxqmd.svelte-dmxqmd{position:relative;display:flex;align-items:center;flex:1}.todo.svelte-dmxqmd input.svelte-dmxqmd.svelte-dmxqmd{flex:1;padding:0.5em 2em 0.5em 0.8em;border-radius:3px}.todo.svelte-dmxqmd button.svelte-dmxqmd.svelte-dmxqmd{width:2em;height:2em;border:none;background-color:transparent;background-position:50% 50%;background-repeat:no-repeat}button.toggle.svelte-dmxqmd.svelte-dmxqmd.svelte-dmxqmd{border:1px solid rgba(0, 0, 0, 0.2);border-radius:50%;box-sizing:border-box;background-size:1em auto}.done.svelte-dmxqmd .toggle.svelte-dmxqmd.svelte-dmxqmd{background-image:url("data:image/svg+xml,%3Csvg width='22' height='16' viewBox='0 0 22 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20.5 1.5L7.4375 14.5L1.5 8.5909' stroke='%23676778' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}.delete.svelte-dmxqmd.svelte-dmxqmd.svelte-dmxqmd{background-image:url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.5 5V22H19.5V5H4.5Z' fill='%23676778' stroke='%23676778' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M10 10V16.5' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M14 10V16.5' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M2 5H22' stroke='%23676778' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M8 5L9.6445 2H14.3885L16 5H8Z' fill='%23676778' stroke='%23676778' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E%0A");opacity:0.2}.delete.svelte-dmxqmd.svelte-dmxqmd.svelte-dmxqmd:hover,.delete.svelte-dmxqmd.svelte-dmxqmd.svelte-dmxqmd:focus{transition:opacity 0.2s;opacity:1}.save.svelte-dmxqmd.svelte-dmxqmd.svelte-dmxqmd{position:absolute;right:0;opacity:0;background-image:url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20.5 2H3.5C2.67158 2 2 2.67157 2 3.5V20.5C2 21.3284 2.67158 22 3.5 22H20.5C21.3284 22 22 21.3284 22 20.5V3.5C22 2.67157 21.3284 2 20.5 2Z' fill='%23676778' stroke='%23676778' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M17 2V11H7.5V2H17Z' fill='white' stroke='white' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M13.5 5.5V7.5' stroke='%23676778' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M5.99844 2H18.4992' stroke='%23676778' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E%0A")}.todo.svelte-dmxqmd input.svelte-dmxqmd:focus+.save.svelte-dmxqmd,.save.svelte-dmxqmd.svelte-dmxqmd.svelte-dmxqmd:focus{transition:opacity 0.2s;opacity:1}`,
-      map: null
-    };
-    load2 = async ({ fetch: fetch2 }) => {
-      const res = await fetch2("/todos.json");
-      if (res.ok) {
-        const todos = await res.json();
-        return { props: { todos } };
-      }
-      const { message } = await res.json();
-      return { error: new Error(message) };
-    };
-    Todos = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { todos } = $$props;
-      if ($$props.todos === void 0 && $$bindings.todos && todos !== void 0)
-        $$bindings.todos(todos);
-      $$result.css.add(css3);
-      return `${$$result.head += `${$$result.title = `<title>Todos</title>`, ""}`, ""}
-
-<div class="${"todos svelte-dmxqmd"}"><h1>Todos</h1>
-
-	<form class="${"new svelte-dmxqmd"}" action="${"/todos.json"}" method="${"post"}"><input name="${"text"}" aria-label="${"Add todo"}" placeholder="${"+ tap to add a todo"}" class="${"svelte-dmxqmd"}"></form>
-
-	${each(todos, (todo) => `<div class="${["todo svelte-dmxqmd", todo.done ? "done" : ""].join(" ").trim()}"><form action="${"/todos/" + escape2(todo.uid) + ".json?_method=patch"}" method="${"post"}"><input type="${"hidden"}" name="${"done"}"${add_attribute("value", todo.done ? "" : "true", 0)} class="${"svelte-dmxqmd"}">
-				<button class="${"toggle svelte-dmxqmd"}" aria-label="${"Mark todo as " + escape2(todo.done ? "not done" : "done")}"></button></form>
-
-			<form class="${"text svelte-dmxqmd"}" action="${"/todos/" + escape2(todo.uid) + ".json?_method=patch"}" method="${"post"}"><input aria-label="${"Edit todo"}" type="${"text"}" name="${"text"}"${add_attribute("value", todo.text, 0)} class="${"svelte-dmxqmd"}">
-				<button class="${"save svelte-dmxqmd"}" aria-label="${"Save todo"}"></button></form>
-
-			<form action="${"/todos/" + escape2(todo.uid) + ".json?_method=delete"}" method="${"post"}"><button class="${"delete svelte-dmxqmd"}" aria-label="${"Delete todo"}" ${todo.pending_delete ? "disabled" : ""}></button></form>
-		</div>`)}
-</div>`;
-    });
-  }
-});
-
-// .svelte-kit/output/server/chunks/app-8b464c42.js
+// .svelte-kit/output/server/chunks/app-2f99d4d4.js
 function get_single_valued_header(headers, key) {
   const value = headers[key];
   if (Array.isArray(value)) {
@@ -36679,15 +36548,15 @@ function get_single_valued_header(headers, key) {
   }
   return value;
 }
-function resolve(base22, path) {
+function resolve(base2, path) {
   if (scheme.test(path))
     return path;
-  const base_match = absolute.exec(base22);
+  const base_match = absolute.exec(base2);
   const path_match = absolute.exec(path);
   if (!base_match) {
-    throw new Error(`bad base path: "${base22}"`);
+    throw new Error(`bad base path: "${base2}"`);
   }
-  const baseparts = path_match ? [] : base22.slice(base_match[0].length).split("/");
+  const baseparts = path_match ? [] : base2.slice(base_match[0].length).split("/");
   const pathparts = path_match ? path.slice(path_match[0].length).split("/") : path.split("/");
   baseparts.pop();
   for (let i = 0; i < pathparts.length; i += 1) {
@@ -37317,7 +37186,7 @@ async function load_node({
         const prefix = options2.paths.assets || options2.paths.base;
         const filename = (resolved.startsWith(prefix) ? resolved.slice(prefix.length) : resolved).slice(1);
         const filename_html = `${filename}/index.html`;
-        const asset = options2.manifest.assets.find((d2) => d2.file === filename || d2.file === filename_html);
+        const asset = options2.manifest.assets.find((d) => d.file === filename || d.file === filename_html);
         if (asset) {
           response = options2.read ? new Response(options2.read(asset.file), {
             headers: asset.type ? { "content-type": asset.type } : {}
@@ -37975,13 +37844,6 @@ function update($$) {
 function escape2(html) {
   return String(html).replace(/["'&<>]/g, (match) => escaped[match]);
 }
-function each(items, fn) {
-  let str = "";
-  for (let i = 0; i < items.length; i += 1) {
-    str += fn(items[i], i);
-  }
-  return str;
-}
 function validate_component(component, name) {
   if (!component || !component.$$render) {
     if (name === "svelte:component")
@@ -38032,8 +37894,8 @@ function add_attribute(name, value, boolean) {
 function afterUpdate() {
 }
 function set_paths(paths) {
-  base2 = paths.base;
-  assets = paths.assets || base2;
+  base = paths.base;
+  assets = paths.assets || base;
 }
 function set_prerendering(value) {
 }
@@ -38045,9 +37907,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-587c8f7c.js",
+      file: assets + "/_app/start-730dc970.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-587c8f7c.js", assets + "/_app/chunks/vendor-fe1c07a2.js"]
+      js: [assets + "/_app/start-730dc970.js", assets + "/_app/chunks/vendor-3b181467.js"]
     },
     fetched: void 0,
     floc: false,
@@ -38090,11 +37952,11 @@ function render(request, {
   const host = request.headers["host"];
   return respond({ ...request, host }, options, { prerender: prerender3 });
 }
-var import_cookie6, __accessCheck, __privateGet, __privateAdd, __privateSet, _map, absolute, scheme, chars, unsafeChars, reserved, escaped$1, objectProtoOwnPropertyNames, subscriber_queue2, escape_json_string_in_html_dict, escape_html_attr_dict, s$1, s, ReadOnlyFormData, has_prop, current_component, dirty_components, binding_callbacks, render_callbacks, flush_callbacks, resolved_promise, update_scheduled, flushing, seen_callbacks, escaped, missing_component, on_destroy, css4, Root, base2, assets, handle, user_hooks, template, options, default_settings, d, empty, manifest, get_hooks, module_lookup, metadata_lookup;
-var init_app_8b464c42 = __esm({
-  ".svelte-kit/output/server/chunks/app-8b464c42.js"() {
+var import_cookie5, __accessCheck, __privateGet, __privateAdd, __privateSet, _map, absolute, scheme, chars, unsafeChars, reserved, escaped$1, objectProtoOwnPropertyNames, subscriber_queue2, escape_json_string_in_html_dict, escape_html_attr_dict, s$1, s, ReadOnlyFormData, has_prop, current_component, dirty_components, binding_callbacks, render_callbacks, flush_callbacks, resolved_promise, update_scheduled, flushing, seen_callbacks, escaped, missing_component, on_destroy, css3, Root, base, assets, handle, user_hooks, template, options, default_settings, empty, manifest, get_hooks, module_lookup, metadata_lookup;
+var init_app_2f99d4d4 = __esm({
+  ".svelte-kit/output/server/chunks/app-2f99d4d4.js"() {
     init_shims();
-    import_cookie6 = __toModule(require_cookie());
+    import_cookie5 = __toModule(require_cookie());
     init_dist();
     __accessCheck = (obj, member, msg) => {
       if (!member.has(obj))
@@ -38219,7 +38081,7 @@ var init_app_8b464c42 = __esm({
     missing_component = {
       $$render: () => ""
     };
-    css4 = {
+    css3 = {
       code: "#svelte-announcer.svelte-1j55zn5{position:absolute;left:0;top:0;clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden;white-space:nowrap;width:1px;height:1px}",
       map: null
     };
@@ -38244,7 +38106,7 @@ var init_app_8b464c42 = __esm({
         $$bindings.props_1(props_1);
       if ($$props.props_2 === void 0 && $$bindings.props_2 && props_2 !== void 0)
         $$bindings.props_2(props_2);
-      $$result.css.add(css4);
+      $$result.css.add(css3);
       {
         stores.page.set(page2);
       }
@@ -38259,17 +38121,17 @@ ${validate_component(components[0] || missing_component, "svelte:component").$$r
 
 ${``}`;
     });
-    base2 = "";
+    base = "";
     assets = "";
     handle = async ({ request, resolve: resolve2 }) => {
-      const cookies = import_cookie6.default.parse(request.headers.cookie || "");
+      const cookies = import_cookie5.default.parse(request.headers.cookie || "");
       request.locals.userid = cookies.userid || v4();
       if (request.query.has("_method")) {
         request.method = request.query.get("_method").toUpperCase();
       }
       const response = await resolve2(request);
       if (!cookies.userid) {
-        response.headers["set-cookie"] = import_cookie6.default.serialize("userid", request.locals.userid, {
+        response.headers["set-cookie"] = import_cookie5.default.serialize("userid", request.locals.userid, {
           path: "/",
           httpOnly: true
         });
@@ -38284,7 +38146,6 @@ ${``}`;
     template = ({ head, body }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<meta name="description" content="Svelte demo app" />\n		<link rel="icon" href="/favicon.png" />\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\n		' + head + '\n	</head>\n	<body>\n		<div id="svelte">' + body + "</div>\n	</body>\n</html>\n";
     options = null;
     default_settings = { paths: { "base": "", "assets": "" } };
-    d = (s2) => s2.replace(/%23/g, "#").replace(/%3[Bb]/g, ";").replace(/%2[Cc]/g, ",").replace(/%2[Ff]/g, "/").replace(/%3[Ff]/g, "?").replace(/%3[Aa]/g, ":").replace(/%40/g, "@").replace(/%26/g, "&").replace(/%3[Dd]/g, "=").replace(/%2[Bb]/g, "+").replace(/%24/g, "$");
     empty = () => ({});
     manifest = {
       assets: [{ "file": "favicon.png", "size": 1571, "type": "image/png" }, { "file": "robots.txt", "size": 67, "type": "text/plain" }, { "file": "svelte-welcome.png", "size": 360807, "type": "image/png" }, { "file": "svelte-welcome.webp", "size": 115470, "type": "image/webp" }],
@@ -38304,25 +38165,6 @@ ${``}`;
           params: empty,
           a: ["src/routes/__layout.svelte", "src/routes/about.svelte"],
           b: [".svelte-kit/build/components/error.svelte"]
-        },
-        {
-          type: "endpoint",
-          pattern: /^\/todos\.json$/,
-          params: empty,
-          load: () => Promise.resolve().then(() => (init_index_json_784727b1(), index_json_784727b1_exports))
-        },
-        {
-          type: "page",
-          pattern: /^\/todos\/?$/,
-          params: empty,
-          a: ["src/routes/__layout.svelte", "src/routes/todos/index.svelte"],
-          b: [".svelte-kit/build/components/error.svelte"]
-        },
-        {
-          type: "endpoint",
-          pattern: /^\/todos\/([^/]+?)\.json$/,
-          params: (m) => ({ uid: d(m[1]) }),
-          load: () => Promise.resolve().then(() => (init_uid_json_039b6f30(), uid_json_039b6f30_exports))
         }
       ]
     };
@@ -38333,13 +38175,12 @@ ${``}`;
       externalFetch: hooks.externalFetch || fetch
     });
     module_lookup = {
-      "src/routes/__layout.svelte": () => Promise.resolve().then(() => (init_layout_9f20f2a7(), layout_9f20f2a7_exports)),
-      ".svelte-kit/build/components/error.svelte": () => Promise.resolve().then(() => (init_error_8876f0c1(), error_8876f0c1_exports)),
-      "src/routes/index.svelte": () => Promise.resolve().then(() => (init_index_747446a9(), index_747446a9_exports)),
-      "src/routes/about.svelte": () => Promise.resolve().then(() => (init_about_5bb777ba(), about_5bb777ba_exports)),
-      "src/routes/todos/index.svelte": () => Promise.resolve().then(() => (init_index_6c740da7(), index_6c740da7_exports))
+      "src/routes/__layout.svelte": () => Promise.resolve().then(() => (init_layout_d4d07fea(), layout_d4d07fea_exports)),
+      ".svelte-kit/build/components/error.svelte": () => Promise.resolve().then(() => (init_error_a1d3abc4(), error_a1d3abc4_exports)),
+      "src/routes/index.svelte": () => Promise.resolve().then(() => (init_index_043ca214(), index_043ca214_exports)),
+      "src/routes/about.svelte": () => Promise.resolve().then(() => (init_about_df280ce0(), about_df280ce0_exports))
     };
-    metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-073d38d8.js", "css": ["assets/pages/__layout.svelte-a7861b78.css"], "js": ["pages/__layout.svelte-073d38d8.js", "chunks/vendor-fe1c07a2.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-15092227.js", "css": [], "js": ["error.svelte-15092227.js", "chunks/vendor-fe1c07a2.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-c6be90f2.js", "css": [], "js": ["pages/index.svelte-c6be90f2.js", "chunks/vendor-fe1c07a2.js"], "styles": [] }, "src/routes/about.svelte": { "entry": "pages/about.svelte-1934f35d.js", "css": ["assets/pages/about.svelte-bf4528fa.css"], "js": ["pages/about.svelte-1934f35d.js", "chunks/vendor-fe1c07a2.js"], "styles": [] }, "src/routes/todos/index.svelte": { "entry": "pages/todos/index.svelte-78fece86.js", "css": ["assets/pages/todos/index.svelte-784042c1.css"], "js": ["pages/todos/index.svelte-78fece86.js", "chunks/vendor-fe1c07a2.js"], "styles": [] } };
+    metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-4e83444e.js", "css": ["assets/pages/__layout.svelte-a7861b78.css"], "js": ["pages/__layout.svelte-4e83444e.js", "chunks/vendor-3b181467.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-df823217.js", "css": [], "js": ["error.svelte-df823217.js", "chunks/vendor-3b181467.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-d210c8e5.js", "css": [], "js": ["pages/index.svelte-d210c8e5.js", "chunks/vendor-3b181467.js"], "styles": [] }, "src/routes/about.svelte": { "entry": "pages/about.svelte-90a9c701.js", "css": ["assets/pages/about.svelte-bf4528fa.css"], "js": ["pages/about.svelte-90a9c701.js", "chunks/vendor-3b181467.js"], "styles": [] } };
   }
 });
 
@@ -38392,8 +38233,8 @@ function getRawBody(req) {
 
 // .svelte-kit/output/server/app.js
 init_shims();
-init_app_8b464c42();
-var import_cookie7 = __toModule(require_cookie());
+init_app_2f99d4d4();
+var import_cookie6 = __toModule(require_cookie());
 init_dist();
 
 // .svelte-kit/vercel/entry.js
