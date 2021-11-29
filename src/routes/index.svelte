@@ -19,6 +19,8 @@
 		OrbitControls
 	} from 'svelthree';
 
+	import gsap from 'gsap';
+
 	const vertices = [];
 
 	for (let i = 0; i < 3000; i++) {
@@ -53,7 +55,14 @@
 </script>
 
 <h1>SvelteKit + <a href="https://github.com/vatro/svelthree">svelthree</a> Integration Test</h1>
-<Canvas let:sti w={800} h={600} interactive on:wheel={handleScroll} style="margin: auto; border: 1px solid;">
+<Canvas
+	let:sti
+	w={800}
+	h={600}
+	interactive
+	on:wheel={handleScroll}
+	style="margin: auto; border: 1px solid;"
+>
 	<Scene {sti} let:scene id="scene1" props={{ background: 0xedf2f7 }}>
 		<PerspectiveCamera {scene} id="cam1" props={{ position: [0, 0, 2000], lookAt: [0, 0, 0] }} />
 
