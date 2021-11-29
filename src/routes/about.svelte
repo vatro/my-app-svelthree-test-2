@@ -19,7 +19,7 @@
 </svelte:head>
 
 <div class="content">
-	<h1>About this app</h1>
+	<h1>SvelteKit + <a href="https://github.com/vatro/svelthree">svelthree</a> Integration Test</h1>
 
 	<p>
 		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
@@ -35,10 +35,6 @@
 		the devtools network panel and reloading.
 	</p>
 
-	<p>
-		The <a href="/todos">TODOs</a> page illustrates SvelteKit's data loading and form handling. Try using
-		it with JavaScript disabled!
-	</p>
 </div>
 
 <style>
